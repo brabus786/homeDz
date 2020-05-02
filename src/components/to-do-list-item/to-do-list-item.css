@@ -1,0 +1,10 @@
+.done{
+    text-decoration: line-through;
+}
+span{
+    cursor: pointer;
+}
+.important{
+    color:blue;
+    font-weight: bold;
+}

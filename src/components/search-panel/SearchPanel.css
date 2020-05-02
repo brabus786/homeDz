@@ -1,0 +1,21 @@
+.wrapInput{
+    margin: 15px;
+    padding: 10px;
+    border:1px solid grey;
+    border-radius:4px;
+    display: flex;
+    align-items: center;
+}
+.wrapInput :last-child{
+    margin-right: 0;
+}
+.input{
+    margin-right: 10px;
+    height: 40px;
+}
+button{
+    margin-right: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}

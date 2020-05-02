@@ -1,0 +1,39 @@
+.to-do-list{
+    margin: 15px;
+}
+
+.to-do-list li{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    justify-content: space-between;
+}
+.wrap{
+    display: flex;
+    align-items: center;
+}
+.delete{
+    color: red;
+    border: 1px solid red;
+    border-radius:4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.exclamation{
+    color:green;
+    border: 1px solid green;
+    border-radius:4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
