@@ -8,9 +8,13 @@ const App = () => {
 
   const todoData = [
     {label:'drink coffee',important:false,id:1},
-    {label:'learn react.js',important:false,id:2},
+    {label:'learn react.js',important:true,id:2},
     {label:'i slip',important:false,id:3},
-  ]
+  ];
+
+ 
+
+
 
   return(
     <>
