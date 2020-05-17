@@ -3,7 +3,7 @@ import './to-do-list-item.css';
 
 const ToDoListItem = ({label,important = false}) => {
 
-    console.log(important);
+    //console.log(important);
 
     const[stateDone,setStateDone] = useState(false);
     
@@ -18,7 +18,7 @@ const ToDoListItem = ({label,important = false}) => {
 
     const labelClick = () => {
         console.log(`Done: ${label}`)
-        setStateDone(true);
+        setStateDone(!stateDone);
     }
 
     return (
