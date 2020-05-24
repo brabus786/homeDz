@@ -16,21 +16,31 @@ const App = () => {
 
   const [state, setState] = useState(todoData);
 
-    let performed = 0;
-    let left = 0;
-   
-    state.map((data) => {
-       if (data.done)  performed ++;
-    });
-    left = state.length - performed;
+  let performed = 0;
+  let left = 0;
 
+  state.map((data) => {
+    if (data.done) performed++;
+  });
+  left = state.length - performed;
+ 
+  const copyState = [...state];
+  const chenge = (e) => {
+
+    console.log(e.target.value);
+    let items = copyState.filter((item) =>{
+       return item.label.indexOf(e.target.value) > -1;
+     });
+     setState(items);
+     console.log(items);
+  }
 
   const doneCheck = (id) => {
     const newState = [...state];
     const obj = newState.find((e) => {
       return e.id === id;
     });
-    obj.done = !obj.done;  
+    obj.done = !obj.done;
     setState(newState);
   }
 
@@ -71,11 +81,13 @@ const App = () => {
   return (
     <>
       <AppHeader />
-      <Tasks 
+      <Tasks
         performed={performed}
         left={left}
       />
-      <SearchPanel />
+      <SearchPanel
+        chenge={chenge}
+      />
       <ToDoList
         todos={state}
         doneCheck={doneCheck}
