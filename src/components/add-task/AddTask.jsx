@@ -11,7 +11,7 @@ const AddTask = ({addtask}) => {
 
     return(
         <div className='input-group'>
-            <input ref={input} className='form-control' type="text"/>
+            <input ref={input} className='form-control has-error has-warning' type="text"/>
             <button onClick={() => addEvwnt()} className='btn btn-secondary'>add item</button>
         </div>
     );

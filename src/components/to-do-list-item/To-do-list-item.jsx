@@ -1,30 +1,23 @@
 import React,{useState} from 'react';
 import './to-do-list-item.css';
 
-const ToDoListItem = ({label,important = false}) => {
+const ToDoListItem = ({label,important = false,id,doneCheck,done}) => {
 
-    //console.log(important);
-
-    const[stateDone,setStateDone] = useState(false);
+ 
     
     let className = ''
-    if(stateDone){
-        className='done';
-    }
+   
     if(important){
         className += ' important';
     }
-    
-
-    const labelClick = () => {
-        console.log(`Done: ${label}`)
-        setStateDone(!stateDone);
+    if(done){
+        className += ' done';
     }
 
     return (
         <span 
         className={className} 
-        onClick={labelClick}
+        onClick={() => doneCheck(id)}
         >{label}</span>
     );
 

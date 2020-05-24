@@ -1,10 +1,11 @@
 import React from 'react'
 import './tascs.css';
 
-const tasks = () => {
-    return(
+const tasks = ({ left,performed }) => {
+
+    return (
         <>
-            <p className='label'>1 more to do, 3 done</p>
+            <p className='label'>{left} more to do, {performed} done</p>
         </>
     );
 };

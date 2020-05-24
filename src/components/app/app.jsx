@@ -9,25 +9,40 @@ import AddTask from '../add-task/AddTask';
 const App = () => {
 
   const todoData = [
-    { label: 'drink coffee', important: false, id: uuid() },
-    { label: 'learn react.js', important: false, id: uuid() },
-    { label: 'i slip', important: false, id: uuid() },
+    { label: 'drink coffee', important: false, done: false, id: uuid() },
+    { label: 'learn react.js', important: false, done: false, id: uuid() },
+    { label: 'i slip', important: false, done: false, id: uuid() },
   ]
 
   const [state, setState] = useState(todoData);
 
-  const deleteItem = (id) => {
+    let performed = 0;
+    let left = 0;
+   
+    state.map((data) => {
+       if (data.done)  performed ++;
+    });
+    left = state.length - performed;
 
+
+  const doneCheck = (id) => {
+    const newState = [...state];
+    const obj = newState.find((e) => {
+      return e.id === id;
+    });
+    obj.done = !obj.done;  
+    setState(newState);
+  }
+
+  const deleteItem = (id) => {
     const indexObj = state.findIndex((x) => {
       return x.id === id;
     });
     const newState = [...state.slice(0, indexObj), ...state.slice(indexObj + 1)];
-    console.log(indexObj, state, newState);
     setState(newState);
   }
 
   const important = (id) => {
-
     const newState = [...state];
     const obj = newState.find((e) => {
       return e.id === id;
@@ -38,29 +53,32 @@ const App = () => {
     } else {
       obj.important = true;
     }
-    console.log(newState);
     setState(newState);
   }
 
   const addtask = (data) => {
-    console.log(data.current.value);
-    
     const newTask = {
       label: data.current.value,
       important: false,
+      done: false,
       id: uuid(),
     };
-    const newState = [...state,newTask];
+    const newState = [...state, newTask];
+    console.log(newState);
     setState(newState);
   }
 
   return (
     <>
       <AppHeader />
-      <Tasks />
+      <Tasks 
+        performed={performed}
+        left={left}
+      />
       <SearchPanel />
       <ToDoList
         todos={state}
+        doneCheck={doneCheck}
         deleteItem={deleteItem}
         important={important}
       />
