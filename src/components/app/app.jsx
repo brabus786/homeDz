@@ -15,6 +15,7 @@ const App = () => {
   ]
 
   const [state, setState] = useState(todoData);
+  const [search, setSearchState] = useState('');
 
   let performed = 0;
   let left = 0;
@@ -24,15 +25,9 @@ const App = () => {
   });
   left = state.length - performed;
  
-  const copyState = [...state];
-  const chenge = (e) => {
-
-    console.log(e.target.value);
-    let items = copyState.filter((item) =>{
-       return item.label.indexOf(e.target.value) > -1;
-     });
-     setState(items);
-     console.log(items);
+  
+  const chenge = (e) => { 
+    setSearchState(e.target.value); 
   }
 
   const doneCheck = (id) => {
@@ -78,6 +73,10 @@ const App = () => {
     setState(newState);
   }
 
+  let items = state.filter((item) =>{
+    return item.label.indexOf(search) > -1;
+  });
+
   return (
     <>
       <AppHeader />
@@ -89,7 +88,7 @@ const App = () => {
         chenge={chenge}
       />
       <ToDoList
-        todos={state}
+        todos={items}
         doneCheck={doneCheck}
         deleteItem={deleteItem}
         important={important}
