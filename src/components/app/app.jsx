@@ -14,8 +14,11 @@ const App = () => {
     { label: 'i slip', important: false, done: false, id: uuid() },
   ]
 
+
   const [state, setState] = useState(todoData);
   const [search, setSearchState] = useState('');
+  const [filter, setFilter] = useState('all');
+  // const [filterItem, setFilterItem] = useState([]);
 
   let performed = 0;
   let left = 0;
@@ -24,11 +27,7 @@ const App = () => {
     if (data.done) performed++;
   });
   left = state.length - performed;
- 
-  
-  const chenge = (e) => { 
-    setSearchState(e.target.value); 
-  }
+
 
   const doneCheck = (id) => {
     const newState = [...state];
@@ -69,23 +68,43 @@ const App = () => {
       id: uuid(),
     };
     const newState = [...state, newTask];
-    console.log(newState);
     setState(newState);
   }
 
-  let items = state.filter((item) =>{
+  const chenge = (e) => {
+    setSearchState(e.target.value);
+  }
+
+  let onFilterChange = (nameBtn) => {
+    setFilter(nameBtn);
+  };
+
+  let items = [];
+
+  if (filter === 'all') items = state.filter((item) => {
     return item.label.indexOf(search) > -1;
   });
+  if (filter === 'active') items = state.filter((item) => !item.done);
+  if (filter === 'done') items = state.filter((item) => item.done);
+
+
+
+  console.log(items);
+
 
   return (
     <>
-      <AppHeader />
+      <AppHeader
+
+      />
       <Tasks
         performed={performed}
         left={left}
       />
       <SearchPanel
         chenge={chenge}
+        onFilterChange={onFilterChange}
+        filter={filter}
       />
       <ToDoList
         todos={items}
